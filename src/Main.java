@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.highgui.Highgui;
-
+//Test !
 public class Main {
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
