@@ -211,6 +211,14 @@ public class Requetes extends Connect {
 			
 			result = prstate.executeQuery();
 			
+			while(result.next()){
+				 masques.addElement(new Masques(result.getInt(1),
+											 result.getInt(2),
+											 result.getString(3),
+											 result.getString(4),
+											 result.getBoolean(5)));
+			}
+			
 			result.close();
 			prstate.close();
 
@@ -221,6 +229,7 @@ public class Requetes extends Connect {
 	}
 	
 	public static ResultSet masqueNomsci(String nomsci){
+		Vector<Masques> masques = new Vector<>();
 
 		try {
 			//requete = "select * from masques where idphoto IN (select idphoto from photos where datephoto IN (select datephoto from photos where idplante IN (select idplante from plantes where nomsci=?)));";
@@ -228,10 +237,18 @@ public class Requetes extends Connect {
 			prstate = conn.prepareStatement(requete);
 			prstate.setString(1, nomsci);
 			
-			result = state.executeQuery(requete);
+			result = prstate.executeQuery();
+			
+			while(result.next()){
+				 masques.addElement(new Masques(result.getInt(1),
+											 result.getInt(2),
+											 result.getString(3),
+											 result.getString(4),
+											 result.getBoolean(5)));
+			}
 			
 			result.close();
-			state.close();
+			prstate.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
