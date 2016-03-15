@@ -1,10 +1,9 @@
-# Histogramme-Masks 
-Chargez l'image et lancez le main. 
-La Classe Main lance la série de traitement de base sur l'image chargée.
-La Classe TraitementImage est une classe Abstraite contenant uniquement des méthode static. Elle permet de réaliser la série de traitement de l'image en passant par différente étapes.
-Pour le moment la classe est composée de 4 méthodes permettant de :
-- Créer un masque,
-- Supperposer ce masque à l'image initiale SANS MODIFIER L'IMAGE INITIALE,
-- Tracer des histogrammes
-- Afficher des images (Histogrammes, images native ou modifiées ...)
-- DES KIKOUBISOUS
+# Main-Project
+Projet en cours de développement 
+Version Alpha 0.0.1 
+    Ajout des éléments principaux du modèle et de la base de donnée. 
+        - Connexion à la BDD - OK;
+        - Execution des requetes - OK;
+        - Création de la classe photos pour stocker/charger/manipuler des images optiques et thermiques - OK;
+        - Création de la classe masques pour stocker/charger/manipuler des masques - En cours;
+        - Simulation des boutons et entrées untilisateurs dans le main En cours;

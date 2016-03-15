@@ -3,7 +3,6 @@ package utilBDDProjet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class Connect {
 	
@@ -11,7 +10,7 @@ public class Connect {
     final static String user = "root";
     final static String passwd = "root";
 	
-	protected static Connection conn=null;
+	protected static Connection conn = null;
 
 	public Connect(){
 			try{
@@ -31,16 +30,4 @@ public class Connect {
 			}
 	}
 	
-	public static void main(String args[]){
-
-		new Requetes();
-		if(Requetes.nouvellePlante("cana","bis"))
-			System.out.println("ca marche");
-		int temp = Requetes.dernierIdPlante();
-		System.out.println(temp);
-		Date date = new Date();
-
-		//Requetes.savePhotoOrigine(temp, "file1.jpg", "file2.png", date);
-		
-	}
 }

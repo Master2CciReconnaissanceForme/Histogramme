@@ -7,11 +7,23 @@ import org.opencv.core.Core;
 import utilBDDProjet.Requetes;
 
 public class Main {
-	 static {
+	public static final Requetes DATABASE = new Requetes();
+	
+	static {
 		   System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		 }
+	}
+	
 	public static void main(String[] args) {
 
+		
+	
+		if(DATABASE.nouvellePlante("cana","bis"))
+			System.out.println("ca marche");
+		int temp = DATABASE.dernierIdPlante();
+		System.out.println(temp);
+
+		/* Simulation bouton de chargement d'une image */
+		
 		String selectedDate = "2016-03-15";
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -24,7 +36,6 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		Requetes requetes = new Requetes();
-		System.out.println(requetes.listePhotos(date));
+		System.out.println(DATABASE.listePhotos(date));
 		}
 }

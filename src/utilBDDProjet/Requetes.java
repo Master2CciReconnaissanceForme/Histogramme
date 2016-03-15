@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.Vector;
 
+import modelProjet.Masques;
 import modelProjet.Photos;
 
 public class Requetes extends Connect {
@@ -199,7 +200,8 @@ public class Requetes extends Connect {
 		}
 	}
 	
-	public static ResultSet masqueNomcom(String nomcom){
+	public static Vector<Masques> masqueNomcom(String nomcom){
+		Vector<Masques> masques = new Vector<>();
 
 		try {
 			//requete = "select * from masques where idphoto IN (select idphoto from photos where datephoto IN (select datephoto from photos where idplante IN (select idplante from plantes where nomcom=?)));";
@@ -207,15 +209,15 @@ public class Requetes extends Connect {
 			prstate = conn.prepareStatement(requete);
 			prstate.setString(1, nomcom);
 			
-			result = state.executeQuery(requete);
+			result = prstate.executeQuery();
 			
 			result.close();
-			state.close();
+			prstate.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
+		return masques;
 	}
 	
 	public static ResultSet masqueNomsci(String nomsci){
