@@ -129,14 +129,14 @@ public class Requetes extends Connect {
 		}	
 	}
 
-	public static Vector<Photos> listePhotos(Date datephoto){
+	public static Vector<Photos> listePhotos(int idPlante){
 
 		Vector<Photos> photo = new Vector<>();
 
 		try {
-			requete = "SELECT * FROM photos WHERE datephoto >=?;";
+			requete = "SELECT * FROM photos WHERE idplante =?;";
 			prstate = conn.prepareStatement(requete);
-			prstate.setObject(1, datephoto);
+			prstate.setObject(1, idPlante);
 					
 			result = prstate.executeQuery();			
 			while(result.next()){
