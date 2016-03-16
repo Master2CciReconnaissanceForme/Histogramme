@@ -34,7 +34,7 @@ public class ConnectInterfaceModel {
 	public Mat sourceOptGray;
 	public Mat sourceThGray;
 	
-	public Mat masque;
+	public static Mat masque = null;
 	
 	public ConnectInterfaceModel(Vector<Photos> workspace) {
 		photos = workspace.get(0);
@@ -45,7 +45,7 @@ public class ConnectInterfaceModel {
 		sourceThGray = Highgui.imread(photos.thOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 	}
 	
-	public static Mat creerMask(Mat image, int seuilMini, int seuilMaxi, int canalCouleur){
+	public static void creerMask(Mat image, int seuilMini, int seuilMaxi, int canalCouleur){
 		List<Mat> mat3Color = new ArrayList<Mat>(3);
 		Mat imageMult = new Mat();
 		Core.multiply (image, new Scalar (2.5, 2.5, 2.5), imageMult);
@@ -54,7 +54,7 @@ public class ConnectInterfaceModel {
 		
 		Imgproc.threshold(imageMult, imageMult, seuilMini, seuilMaxi, Imgproc.THRESH_BINARY_INV);
 
-		return imageMult;	
+		masque = imageMult;	
 	}
 	
 	public static Mat superposerMask(Mat image, Mat mask, boolean remplissage){

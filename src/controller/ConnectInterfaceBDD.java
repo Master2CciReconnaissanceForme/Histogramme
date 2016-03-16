@@ -4,14 +4,19 @@ import java.util.Date;
 import java.util.Vector;
 
 import modelProjet.Photos;
+
+import org.opencv.core.Mat;
+
 import utilBDDProjet.Requetes;
 
 public class ConnectInterfaceBDD {
 	
 	static Requetes DATABASE;
+	static Date datephoto;
 	
 	public ConnectInterfaceBDD(Requetes DATABASE) {
 		this.DATABASE = DATABASE;
+		datephoto = new Date();
 	}
 	
 	public static Vector<Photos> chargementNewProject(String nomCommun, String nomScientifique, String cheminOpt, String cheminTh ) {
@@ -26,9 +31,13 @@ public class ConnectInterfaceBDD {
 		if(Requetes.nouvellePlante(nomCommun, nomScientifique))
 			System.out.println("Nouvelle Plante enregistrée");
 
-		Date datephoto = new Date();
+		
 		DATABASE.savePhotoOrigine(DATABASE.dernierIdPlante(), cheminOpt, cheminTh, datephoto);
 		
 		return DATABASE.listePhotos(DATABASE.dernierIdPlante());
+	}
+	
+	public static void enregistrerMasque(String masque, String typeMasque){
+		DATABASE.saveMasque(datephoto, masque, typeMasque);
 	}
 }
