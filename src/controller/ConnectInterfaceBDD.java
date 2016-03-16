@@ -12,7 +12,7 @@ import utilBDDProjet.Requetes;
 public class ConnectInterfaceBDD {
 	
 	static Requetes DATABASE;
-	static Date datephoto;
+	static java.util.Date datephoto;
 	
 	public ConnectInterfaceBDD(Requetes DATABASE) {
 		this.DATABASE = DATABASE;

@@ -9,7 +9,8 @@ import modelProjet.Photos;
 import org.opencv.core.Core;
 
 import controller.ConnectInterfaceBDD;
-import controller.ConnectInterfaceModel;
+import controller.ConnectInterfaceCalibrage;
+import controller.ConnectInterfaceWorkspace;
 import utilBDDProjet.Requetes;
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
 
 		Requetes DATABASE = new Requetes();
 		ConnectInterfaceBDD connecteurBDD = new ConnectInterfaceBDD(DATABASE);
-		ConnectInterfaceModel workspace; 
+		ConnectInterfaceWorkspace workspace; 
 		Vector<Photos> loadsFromBDD;
 
 		/********************************************************************************************************/
@@ -34,7 +35,7 @@ public class Main {
 		String CheminThermique = "C:/Thermique.jpg";
 		
 		loadsFromBDD = connecteurBDD.chargementNewProject(nomCommun, nomScientifique, CheminOptique, CheminThermique);
-		workspace = new ConnectInterfaceModel(loadsFromBDD);
+		workspace = new ConnectInterfaceWorkspace(loadsFromBDD);
 
 		/* A ce moment là, l'utilisateur a sauvegardé ses images dans la base de données. 
 		 * Les objets images sont accessibles depuis l'objet "connecteur" où l'utilisateur peut directement travailler avec
@@ -53,16 +54,19 @@ public class Main {
 		/* Simulation de création de masque à partir de l'image thermique et sauvegarde dans la base de données de ces masques*/
 		workspace.creerMask(workspace.sourceTh, 254, 255, 2);
 		workspace.afficherImage(workspace.masque);
-		connecteurBDD.enregistrerMasque("Hashtag carnaval (Masque - Carnaval vous avez compris ?)", "global");
+		connecteurBDD.enregistrerMasque("Carnaval", "global");
 		
 		/* simulation de la superposition du masque sur l'image thermique et affichage + Réaffichage de l'image thermique normale*/
 		workspace.afficherImage(workspace.superposerMask(workspace.sourceTh, workspace.masque, true));
 		workspace.afficherImage(workspace.sourceTh);
 
+		/********************************************************************************************************/
+		/* simulation de recalibrage par l'utilisateur*/
 		
-		//RecalageTemoin recalageTemoin = new RecalageTemoin("D:/Recalage/cassOp.jpg", "D:/Recalage/cassTh.jpg");
-		//RecalageFixe recalageFixe = new RecalageFixe("D:/Recalage/cassOp.jpg", "D:/Recalage/cassTh.jpg");
-		//RecalageClassique recalageClassique1 = new RecalageClassique("D:/Recalage/fleurOp.jpg", "D:/Recalage/fleurTh.jpg");
-		//RecalageClassique recalageClassique2 = new RecalageClassique("D:/Recalage/cassOp.jpg", "D:/Recalage/cassTh.jpg");
+		//ConnectInterfaceCalibrage.calibrageManuel(workspace.photos.optOrigine, workspace.photos.thOrigine);
+		
+		/* Simulation de recalibrage automatique */
+		//ConnectInterfaceCalibrage.calibrageAuto(workspace.photos.optOrigine, workspace.photos.thOrigine);
+		
 	}
 }

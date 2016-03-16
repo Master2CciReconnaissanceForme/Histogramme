@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -159,13 +160,16 @@ public class Requetes extends Connect {
 	}
 	
 	public static int idPhoto(Date datephoto){
-		int res = 0;		
+		int res = 0;
+		SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		simpledate.format(datephoto);
 		try {
 			requete = "SELECT idphoto FROM photos WHERE datephoto >= ?;";
 			prstate = conn.prepareStatement(requete);
 			prstate.setObject(1, datephoto);
 			
 			result = prstate.executeQuery();
+			System.out.println(prstate);
 			result.next();
 			res = result.getInt(1);
 			
@@ -180,17 +184,18 @@ public class Requetes extends Connect {
 	
 	public static boolean saveMasque(Date datephoto, String masque, String typeMasque){
 		int idphoto = idPhoto(datephoto);
+		System.out.println(datephoto);
 		try {
-			requete = "insert into masques (idphoto,masque,typemasque,valide) values(?,?,?,false) ;";
+			requete = "insert into masques(idphoto,masque,typemasque,valide)values(?,?,?,false);";
 			prstate = conn.prepareStatement(requete);
 			prstate.setInt(1, idphoto);
-			prstate.setString(1, masque);
-			prstate.setString(1, typeMasque);
+			prstate.setString(2, masque);
+			prstate.setString(3, typeMasque);
 			
-			result = state.executeQuery(requete);
+			System.out.println(prstate);
+			prstate.executeUpdate();
 			
-			result.close();
-			state.close();
+			prstate.close();
 			
 			return true;
 
@@ -262,9 +267,9 @@ public class Requetes extends Connect {
 			requete = "update masque valide = ? where idphoto = ? and masque= ? And typemasque= ?;";
 			prstate = conn.prepareStatement(requete);
 			prstate.setBoolean(1, statut);
-			prstate.setInt(1, idphoto);
-			prstate.setString(1, masque);
-			prstate.setString(1, typeMasque);
+			prstate.setInt(2, idphoto);
+			prstate.setString(3, masque);
+			prstate.setString(4, typeMasque);
 			
 			result = state.executeQuery(requete);
 			

@@ -46,6 +46,7 @@ public class Photos {
 		this.idPhoto = idPhoto;
 		this.idPlante = idPlante;
 		this.datePhoto = datePhoto;
+		System.out.println(datePhoto);
 		this.optOrigine = optOrigine;
 		this.thOrigine = thOrigine;
 		this.optRecal = optRecal;

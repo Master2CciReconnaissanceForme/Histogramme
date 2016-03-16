@@ -15,15 +15,19 @@ Version Alpha 0.0.1
             création des masques - OK;
             Affichage des masques hors BDD - OK;
             Enregistrement des masques en BDD - OK;
-            Update des masques (Validate ou non) - En Cours;
-            Update des photos dabns la BDD - En cours;
+            
+            Update des masques (Validate ou non) - En cours;
+            Update des photos dans la BDD - En cours;
             
 Version Alpha 0.0.2
     Ajout de la phase de calibrage En cours;
-        - Ajout du calibrage initial du modèle - A faire;
-        - Ajout du calibrage permanent via chargement depuis un fichier paramètre - A faire;
-        - Ajout de la possibilité de recalibrer le modèle - A faire;
-        - Ajout du l'interface de calibrage - A faire;
+        - Ajout du calibrage initial du modèle - OK;
+        - Ajout du calibrage automatique - OK;
+        - Ajout de la possibilité de recalibrer le modèle - OK;
+        - Ajout du l'interface de calibrage - OK;
+        - Création du répertoire de travail temporaire; - OK;
         
+      - Ajout du calibrage depuis depuis un fichier paramètre - En Cours;
+       
             
        

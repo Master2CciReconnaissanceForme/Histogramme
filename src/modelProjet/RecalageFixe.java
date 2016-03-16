@@ -1,4 +1,8 @@
 package modelProjet;
+import java.io.File;
+
+import main.Main;
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
@@ -24,9 +28,9 @@ public class RecalageFixe {
 	private void recalageOptiqueFixe() {
 		
 		//A FIXER D'APRES RECALAGE TEMOIN BIDOUILLE A LA MAIN, d'apr�s images prises � h = 2m
-		double facteur = 0.67 ; 
-		int i = 109*3	;
-		int j = 218*3 ; 
+		double facteur = 0.76 ; 
+		int i = 250*3	;
+		int j = 147*3 ; 
 		
 		//Avec ces valeurs d�termin�es UNE FOIS POUR TOUTES, on proc�de aux resize + rognage
 		recalageFinalOptique(facteur, i, j);
@@ -52,7 +56,7 @@ public class RecalageFixe {
 				recaleeOptique.put(iRec, jRec, resizeOptique.get(iRec + iOp, jRec + jOp));
 			}
 		}
-		Highgui.imwrite("D:/Recalage/recaleeOptique.jpg", recaleeOptique);
+		//Highgui.imwrite(tmp, recaleeOptique);
 
 		
 	}

@@ -25,7 +25,7 @@ import org.opencv.core.Scalar;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
-public class ConnectInterfaceModel {
+public class ConnectInterfaceWorkspace {
 
 	public Photos photos;
 	public Mat sourceOpt;
@@ -36,7 +36,7 @@ public class ConnectInterfaceModel {
 	
 	public static Mat masque = null;
 	
-	public ConnectInterfaceModel(Vector<Photos> workspace) {
+	public ConnectInterfaceWorkspace(Vector<Photos> workspace) {
 		photos = workspace.get(0);
 		sourceOpt = Highgui.imread(photos.optOrigine);
 		sourceTh = Highgui.imread(photos.thOrigine);
