@@ -20,14 +20,19 @@ Version Alpha 0.0.1
             Update des photos dans la BDD - En cours;
             
 Version Alpha 0.0.2
-    Ajout de la phase de calibrage En cours;
+    Ajout de la phase de calibrage OK;
         - Ajout du calibrage initial du modèle - OK;
         - Ajout du calibrage automatique - OK;
         - Ajout de la possibilité de recalibrer le modèle - OK;
         - Ajout du l'interface de calibrage - OK;
         - Création du répertoire de travail temporaire; - OK;
-        
-      - Ajout du calibrage depuis depuis un fichier paramètre - En Cours;
+        - Ajout du calibrage depuis depuis un fichier paramètre - OK;
        
-            
+Version Alpha 0.0.3
+        - Correction de bug : Le chemin vers le dossier "tmp" est désormais correct - OK; 
+        - Correction de bug : L'image optique recallée est bien enregistrée au bon endroit - OK;
+        - Ajout de l'interface principale - OK;
+        - Ajout de l'interface de chargement d'un nouveau projet - En cours;
+        - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
+        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - En Cours;
        

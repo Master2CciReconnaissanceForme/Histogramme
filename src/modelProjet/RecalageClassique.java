@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import main.Main;
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
@@ -266,7 +268,7 @@ public class RecalageClassique {
 		Mat sourceContenantRecalee = new Mat( (int)(sourceContenant.rows()* facteur),  (int)(sourceContenant.cols()* facteur), CvType.CV_8UC1);
 		Size size = new Size((int)(sourceContenant.cols()* facteur) , (int)(sourceContenant.rows()* facteur));
 		Imgproc.resize(sourceContenant, sourceContenantRecalee, size);
-		Highgui.imwrite("D:/Recalage/recaleeContenant.jpg", sourceContenantRecalee);
+		Highgui.imwrite(Main.PATHFILE+"/recaleeContenant.jpg", sourceContenantRecalee);
 
 		return sourceContenantRecalee ;
 	}
@@ -304,7 +306,7 @@ public class RecalageClassique {
 		for (int i3 = 0 ; i3 < sourceContenantRognee.rows() ; i3++)
 			for (int j3 = 0 ; j3 < sourceContenantRognee.cols() ; j3++)		
 				sourceContenantRognee.put(i3, j3, sourceContenantRecalee.get(i3 + i, j3 + j));
-		Highgui.imwrite("D:/Recalage/rogneeContenant.jpg", sourceContenantRognee);
+		Highgui.imwrite(Main.PATHFILE+"/rogneeContenant.jpg", sourceContenantRognee);
 
 		return sourceContenantRognee;
 	}

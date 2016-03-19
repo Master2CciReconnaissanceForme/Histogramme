@@ -2,6 +2,7 @@ package modelProjet;
 import java.io.File;
 
 import interfaceProjet.CalibrageJFrame;
+import main.Main;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -43,8 +44,7 @@ public class RecalageTemoin {
 		Size size = new Size((int)(sourceOptique.cols()* facteur) , (int)(sourceOptique.rows()* facteur));
 		
 		Imgproc.resize(sourceOptique, resizeOptique, size);
-		String pathFile = new File("").getAbsolutePath()+"/tmp";
-		Highgui.imwrite(pathFile+"/resizeOptique.jpg", resizeOptique);
+		Highgui.imwrite(Main.PATHFILE+"/resizeOptique.jpg", resizeOptique);
 	}
 	
 	public void rognageOptique(int iOp, int jOp) {
@@ -54,9 +54,6 @@ public class RecalageTemoin {
 				recaleeOptique.put(iRec, jRec, resizeOptique.get(iRec + iOp, jRec + jOp));
 			}
 		}
-		String pathFile = new File("").getAbsolutePath()+"/tmp";
-		Highgui.imwrite(pathFile+"/recaleeOptique.jpg", recaleeOptique);
-		
-		
+		Highgui.imwrite(Main.PATHFILE+"/recaleeOptique.jpg", recaleeOptique);
 	}
 }

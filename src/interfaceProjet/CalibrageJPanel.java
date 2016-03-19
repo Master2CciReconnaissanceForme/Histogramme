@@ -11,9 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import main.Main;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -31,8 +35,6 @@ public class CalibrageJPanel extends JPanel{
 	
 	public CalibrageJFrame imJFrame ;
 	
-	final String pathFile = new File("").getAbsolutePath()+"/tmp";
-
 	Image imOptique ;
 	Image imThermique ;	
 	int jOptique ;
@@ -42,12 +44,12 @@ public class CalibrageJPanel extends JPanel{
 	
 	public CalibrageJPanel(final CalibrageJFrame imJFrame) {
 		this.imJFrame = imJFrame ;
-		Highgui.imwrite(pathFile+"/imOptique.jpg", imJFrame.recalageTemoin.sourceOptique);
+		Highgui.imwrite(Main.PATHFILE+"/imOptique.jpg", imJFrame.recalageTemoin.sourceOptique);
 
-		imOptique = Toolkit.getDefaultToolkit().createImage(pathFile+"/imOptique.jpg");
+		imOptique = Toolkit.getDefaultToolkit().createImage(Main.PATHFILE+"/imOptique.jpg");
 		
-		Highgui.imwrite(pathFile+"/imThermique.jpg", imJFrame.recalageTemoin.sourceThermique);
-		imThermique = Toolkit.getDefaultToolkit().createImage(pathFile+"/imThermique.jpg");
+		Highgui.imwrite(Main.PATHFILE+"/imThermique.jpg", imJFrame.recalageTemoin.sourceThermique);
+		imThermique = Toolkit.getDefaultToolkit().createImage(Main.PATHFILE+"/imThermique.jpg");
 		
 		jOptique = 0 ;
 		iOptique = 0 ;
@@ -91,8 +93,8 @@ public class CalibrageJPanel extends JPanel{
 				Mat mat3 = new Mat( (int)(imJFrame.recalageTemoin.sourceOptique.rows()* facteur),  (int)(imJFrame.recalageTemoin.sourceOptique.cols()* facteur), CvType.CV_8UC1);
 				Size size = new Size((int)(imJFrame.recalageTemoin.sourceOptique.cols()* facteur) , (int)(imJFrame.recalageTemoin.sourceOptique.rows()* facteur));
 				Imgproc.resize(imJFrame.recalageTemoin.sourceOptique, mat3, size);
-				Highgui.imwrite(pathFile+"/imOptique.jpg", mat3);
-				imOptique = Toolkit.getDefaultToolkit().createImage(pathFile+"/imOptique.jpg");
+				Highgui.imwrite(Main.PATHFILE+"/imOptique.jpg", mat3);
+				imOptique = Toolkit.getDefaultToolkit().createImage(Main.PATHFILE+"/imOptique.jpg");
 				repaint();
 			}
 		});
@@ -105,8 +107,8 @@ public class CalibrageJPanel extends JPanel{
 					Mat mat3 = new Mat( (int)(imJFrame.recalageTemoin.sourceOptique.rows()* facteur),  (int)(imJFrame.recalageTemoin.sourceOptique.cols()* facteur), CvType.CV_8UC1);
 					Size size = new Size((int)(imJFrame.recalageTemoin.sourceOptique.cols()* facteur) , (int)(imJFrame.recalageTemoin.sourceOptique.rows()* facteur));
 					Imgproc.resize(imJFrame.recalageTemoin.sourceOptique, mat3, size);
-					Highgui.imwrite(pathFile+"/imOptique.jpg", mat3);
-					imOptique = Toolkit.getDefaultToolkit().createImage(pathFile+"/imOptique.jpg");
+					Highgui.imwrite(Main.PATHFILE+"/imOptique.jpg", mat3);
+					imOptique = Toolkit.getDefaultToolkit().createImage(Main.PATHFILE+"/imOptique.jpg");
 					repaint();
 				}
 			});
@@ -156,11 +158,19 @@ public class CalibrageJPanel extends JPanel{
 		 JButton end = new JButton("Termin�");
 		 end.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("facteur = "+facteur+" , j = "+jOptique+" , i = "+iOptique);
-					imJFrame.recalageTemoin.recalageFinalOptique(facteur, iOptique*3,jOptique*3);					
-				}
+			 @Override
+			 public void actionPerformed(ActionEvent arg0) {
+				 System.out.println("facteur = "+facteur+" , j = "+jOptique+" , i = "+iOptique);
+				 try {
+					 FileWriter file = new FileWriter(Main.PATHPARAMS);
+					 file.write(facteur+"\n"+(iOptique*3)+"\n"+(jOptique*3));
+					 file.flush();
+					 file.close();
+				 } catch (IOException e) {
+					 e.printStackTrace();
+				 }
+				 	imJFrame.recalageTemoin.recalageFinalOptique(facteur, iOptique*3,jOptique*3); 
+				 }
 			 });
 		 
 		 add(haut);
