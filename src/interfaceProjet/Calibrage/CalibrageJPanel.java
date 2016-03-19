@@ -1,4 +1,4 @@
-package interfaceProjet;
+package interfaceProjet.Calibrage;
 
 import java.awt.AlphaComposite;
 import java.awt.Choice;

@@ -15,9 +15,10 @@ Version Alpha 0.0.1
             création des masques - OK;
             Affichage des masques hors BDD - OK;
             Enregistrement des masques en BDD - OK;
+            Update des photos dans la BDD - OK;
             
-            Update des masques (Validate ou non) - En cours;
-            Update des photos dans la BDD - En cours;
+            Update des masques (Validate ou non) - A Faire;
+            
             
 Version Alpha 0.0.2
     Ajout de la phase de calibrage OK;
@@ -34,5 +35,5 @@ Version Alpha 0.0.3
         - Ajout de l'interface principale - OK;
         - Ajout de l'interface de chargement d'un nouveau projet - En cours;
         - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
-        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - En Cours;
+        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK;
        

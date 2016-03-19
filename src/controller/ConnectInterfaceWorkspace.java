@@ -44,7 +44,7 @@ public class ConnectInterfaceWorkspace {
 		sourceOptGray = Highgui.imread(photos.optOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 		sourceThGray = Highgui.imread(photos.thOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 	}
-	
+
 	public static void creerMask(Mat image, int seuilMini, int seuilMaxi, int canalCouleur){
 		List<Mat> mat3Color = new ArrayList<Mat>(3);
 		Mat imageMult = new Mat();

@@ -1,4 +1,4 @@
-package interfaceProjet;
+package interfaceProjet.Calibrage;
 
 import javax.swing.JFrame;
 

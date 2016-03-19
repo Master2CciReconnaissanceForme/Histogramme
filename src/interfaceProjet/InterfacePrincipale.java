@@ -1,5 +1,7 @@
 package interfaceProjet;
 
+import interfaceProjet.LoadProjects.NewProjectForm;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,6 +59,16 @@ public class InterfacePrincipale extends JFrame {
         impMenu.add(mailMi);
 
         JMenuItem newMi = new JMenuItem("New");
+        newMi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+            	JFrame frame = new JFrame ("Nouveau projet");
+        	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	    frame.setSize(400, 400);
+        	    frame.setVisible(true);
+        		NewProjectForm newProjectForm = new NewProjectForm(frame);;
+            }
+        });
         JMenuItem openMi = new JMenuItem("Open");
         
         JMenuItem saveMi = new JMenuItem("Save");

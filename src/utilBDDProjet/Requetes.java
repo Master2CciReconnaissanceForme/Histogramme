@@ -118,8 +118,6 @@ public class Requetes extends Connect {
 			prstate.setString(1, threcal);
 			prstate.setObject(2, datephoto);
 	
-			System.out.println(prstate.toString());
-			
 			prstate.executeUpdate();
 			prstate.close();
 			return true;
@@ -161,12 +159,12 @@ public class Requetes extends Connect {
 	
 	public static int idPhoto(Date datephoto){
 		int res = 0;
-		SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		simpledate.format(datephoto);
+		SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0");
+	    String dateFormatee = simpledate.format(datephoto);
 		try {
 			requete = "SELECT idphoto FROM photos WHERE datephoto >= ?;";
 			prstate = conn.prepareStatement(requete);
-			prstate.setObject(1, datephoto);
+			prstate.setObject(1, dateFormatee);
 			
 			result = prstate.executeQuery();
 			System.out.println(prstate);

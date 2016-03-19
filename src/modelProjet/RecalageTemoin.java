@@ -1,7 +1,7 @@
 package modelProjet;
 import java.io.File;
 
-import interfaceProjet.CalibrageJFrame;
+import interfaceProjet.Calibrage.CalibrageJFrame;
 import main.Main;
 
 import org.opencv.core.CvType;

@@ -28,7 +28,7 @@ public class ConnectInterfaceBDD {
 		if(nomScientifique.isEmpty())
 			nomScientifique = null;
 		
-		if(Requetes.nouvellePlante(nomCommun, nomScientifique))
+		if(Requetes.nouvellePlante(nomScientifique, nomCommun))
 			System.out.println("Nouvelle Plante enregistrée");
 
 		
