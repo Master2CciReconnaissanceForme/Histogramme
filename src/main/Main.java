@@ -1,5 +1,5 @@
 package main;
-import interfaceProjet.SubmenuEx;
+import interfaceProjet.InterfacePrincipale;
 
 import java.awt.EventQueue;
 import java.io.File;
@@ -33,7 +33,7 @@ public class Main {
             @Override
             public void run() {
                 
-                SubmenuEx ex = new SubmenuEx();
+                InterfacePrincipale ex = new InterfacePrincipale();
                 ex.setVisible(true);
             }
         });
