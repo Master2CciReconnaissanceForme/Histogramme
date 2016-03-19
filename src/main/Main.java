@@ -17,7 +17,8 @@ public class Main {
 	
 	public final static String PATHFILE = new File("").getAbsolutePath()+"/tmp";
 	public final static String PATHPARAMS = new File("").getAbsolutePath()+"/params.txt";
-	
+	public final static String PATHYGGDRASIL = new File("").getAbsolutePath()+"/Yggdrasil";
+
 	
 	public static Requetes DATABASE = new Requetes();
 	public static ConnectInterfaceBDD connecteurBDD = new ConnectInterfaceBDD(DATABASE);

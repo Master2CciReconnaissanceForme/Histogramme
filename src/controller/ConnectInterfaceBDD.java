@@ -1,8 +1,10 @@
 package controller;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Vector;
 
+import main.Main;
 import modelProjet.Photos;
 
 import org.opencv.core.Mat;
@@ -31,7 +33,6 @@ public class ConnectInterfaceBDD {
 		if(Requetes.nouvellePlante(nomScientifique, nomCommun))
 			System.out.println("Nouvelle Plante enregistrée");
 
-		
 		DATABASE.savePhotoOrigine(DATABASE.dernierIdPlante(), cheminOpt, cheminTh, datephoto);
 		
 		return DATABASE.listePhotos(DATABASE.dernierIdPlante());
