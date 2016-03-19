@@ -1,4 +1,4 @@
-# Main-Project
+# Main-Project - ALPHA 0.0.5
 Projet en cours de développement 
 Version Alpha 0.0.1 
     Ajout des éléments principaux du modèle et de la base de donnée. 
@@ -15,10 +15,7 @@ Version Alpha 0.0.1
             création des masques - OK;
             Affichage des masques hors BDD - OK;
             Enregistrement des masques en BDD - OK;
-            Update des photos dans la BDD - OK;
-            
-            Update des masques (Validate ou non) - A Faire;
-            
+            Update des photos dans la BDD - OK;            
             
 Version Alpha 0.0.2
     Ajout de la phase de calibrage OK;
@@ -35,7 +32,12 @@ Version Alpha 0.0.3
         - Ajout de l'interface principale - OK;
         - Ajout de l'interface de chargement d'un nouveau projet - OK;
         - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
-        - Ajout du calibrage automatique après chargement et possibilité de recalibrer si le calibrage est mauvais - En Cours 
-        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK + A modifier;
-            Pour le moment, les nom des images sont écris en dur dans le code il faudra les charger via le nom stocké dans BDD
+        - Ajout du calibrage automatique après chargement et possibilité de recalibrer si le calibrage est mauvais - OK 
+        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK;
        
+Version Alpha 0.0.5 
+        - Ajout de l'interface de recalibrage - OK;
+        - Ajout de la sauvegarde des images recalibrees sur disque ET sur BDD - En cours;
+        - Ajout de l'interface de sauvegarde ou non des masques - En cours;
+        - Ajout de l'interface de modification d'options pour la création des masques (Seuils Mini et Maxi etc...) - A faire;
+        - Ajout de la validation des masques dans la BDD - A faire;

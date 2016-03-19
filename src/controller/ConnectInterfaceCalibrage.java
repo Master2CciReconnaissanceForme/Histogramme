@@ -1,11 +1,10 @@
 package controller;
 
-import java.io.File;
-
-import org.opencv.core.Mat;
-
+import interfaceProjet.Calibrage.ValidationJFrame;
 import modelProjet.RecalageFixe;
 import modelProjet.RecalageTemoin;
+
+import org.opencv.core.Mat;
 
 public abstract class ConnectInterfaceCalibrage {
 
@@ -15,7 +14,7 @@ public abstract class ConnectInterfaceCalibrage {
 	}
 	
 	public static Mat calibrageAuto(String optOrigine, String thOrigine){
-		new RecalageFixe(optOrigine, thOrigine);
+		ValidationJFrame validationFrame = new ValidationJFrame(new RecalageFixe(optOrigine, thOrigine), null);
 		return RecalageFixe.recaleeOptique;
 	}
 	
