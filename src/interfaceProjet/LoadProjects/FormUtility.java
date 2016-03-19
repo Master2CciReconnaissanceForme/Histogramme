@@ -1,63 +1,67 @@
 package interfaceProjet.LoadProjects;
+
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class FormUtility {
-    /**
-     * Grid bag constraints for fields and labels
-     */
-    private GridBagConstraints lastConstraints = null;
-    private GridBagConstraints middleConstraints = null;
-    private GridBagConstraints labelConstraints = null;
-    private GridBagConstraints buttonConstraints = null;
 
+    private GridBagConstraints lastConstraints 	 = null ;
+    private GridBagConstraints simpleConstraints  = null ;
+    private GridBagConstraints buttonConstraints = null ;
 
     public FormUtility() {
-   
-        lastConstraints =  new GridBagConstraints();
+    	initLastConstraints();
+    	initSimpleCOnstraints();
+    	initButtonConstraints();
+    }
+
+    /* Méthodes d'initialisations des GridBagConstraints */
+    
+    private void initButtonConstraints() {       
+        buttonConstraints = (GridBagConstraints) lastConstraints.clone();
+        buttonConstraints.gridwidth = GridBagConstraints.RELATIVE;
+        buttonConstraints.weightx = 0.0;
+        buttonConstraints.gridwidth = 1;
+        buttonConstraints.insets = new Insets(15, 5, 0, 0);		
+	}
+
+	private void initSimpleCOnstraints() {
+        simpleConstraints = (GridBagConstraints) lastConstraints.clone();
+        simpleConstraints.weightx = 0.0;
+        simpleConstraints.gridwidth = 1;		
+	}
+
+	private void initLastConstraints() {
+		lastConstraints =  new GridBagConstraints();
         lastConstraints.fill = GridBagConstraints.HORIZONTAL;
         lastConstraints.anchor = GridBagConstraints.NORTHWEST;
         lastConstraints.weightx = 1.0;
         lastConstraints.gridwidth = GridBagConstraints.REMAINDER;
         lastConstraints.insets = new Insets(1, 1, 1, 1);
-        
+	}
 
-        labelConstraints = (GridBagConstraints) lastConstraints.clone();
-        lastConstraints.anchor = GridBagConstraints.BASELINE;
+	/* Méthodes du FormUtility pour ajout des éléments dans le futur formulaire */
 
-        labelConstraints.weightx = 0.0;
-        labelConstraints.gridwidth = 1;
-        
-        buttonConstraints = (GridBagConstraints) lastConstraints.clone();
-        buttonConstraints.gridwidth = GridBagConstraints.RELATIVE;
-        buttonConstraints.weightx = 0.0;
-        buttonConstraints.gridwidth = 1;
-        buttonConstraints.insets = new Insets(15, 5, 0, 0);
-    }
-
-
-    public void addLast(Component c, Container parent) {
+	public void addLast(Component c, Container parent) {
         GridBagLayout gbl = (GridBagLayout) parent.getLayout();
         gbl.setConstraints(c, lastConstraints);
         parent.add(c);
     }
     
-  
-    public void addLabel(Component c, Container parent) {
+    public void addSimpleComponent(Component c, Container parent) {
         GridBagLayout gbl = (GridBagLayout) parent.getLayout();
-        gbl.setConstraints(c, labelConstraints);
+        gbl.setConstraints(c, simpleConstraints);
         parent.add(c);
     }
   
     public JLabel addLabel(String s, Container parent) {
         JLabel c = new JLabel(s);
-        addLabel(c, parent);
+        addSimpleComponent(c, parent);
         return c;
     }
     
@@ -66,7 +70,4 @@ public class FormUtility {
         gbl.setConstraints(button, buttonConstraints);
         parent.add(button);
     }
-
-  
-
 }

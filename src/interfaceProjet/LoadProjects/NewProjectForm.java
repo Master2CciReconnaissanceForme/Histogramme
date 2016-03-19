@@ -1,4 +1,6 @@
 package interfaceProjet.LoadProjects;
+
+import interfaceProjet.Utils.UtilFiles;
 import interfaceProjet.helpMessages.HelpJDialog;
 
 import java.awt.BorderLayout;
@@ -7,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,84 +16,51 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import utilBDDProjet.Requetes;
-import main.Main;
-import modelProjet.Photos;
-import controller.ConnectInterfaceBDD;
 import controller.ConnectInterfaceWorkspace;
-import interfaceProjet.Utils.UtilFiles;
+import main.Main;
 
 public class NewProjectForm {
 	
 	JFrame frame ;
 	
-	public String nomCommunValue = "";
-	public String nomScientifiqueValue = "";
-	public String cheminThermiqueValue = "";
-	public String cheminOptiqueValue= "" ;
+	public String nomCommunValue 		= "";
+	public String nomScientifiqueValue 	= "";
+	public String cheminThermiqueValue 	= "";
+	public String cheminOptiqueValue	= "" ;
 	
-	public NewProjectForm(JFrame frame) {	//la frame induite par le clic sur "nouveau projet" est pass� en param�tre
+	public NewProjectForm(JFrame frame) {	//la frame induite par le clic sur "nouveau projet" (cf main) est passée en paramètre
+		
 		this.frame = frame ;
-		constructForm();
-	}
-	
-	private void constructForm() {
-	
-	    JPanel form = new JPanel();
+		JPanel form = new JPanel();
+
 	    frame.getContentPane().setLayout(new BorderLayout());
 	    frame.getContentPane().add(form, BorderLayout.NORTH);
 	    
 	    form.setLayout(new GridBagLayout());
 	    FormUtility formUtility = new FormUtility();
-
-	    formUtility.addLabel("* Nom commun : ", form);
-	    final JTextField nomCommun = new JTextField();
-	    formUtility.addLast(nomCommun, form);
 	    
-	    formUtility.addLabel("Nom scientifique : ", form);
+	    constructForm(form, formUtility);
+	    
+	    form.setBorder(new EmptyBorder(2, 2, 2, 2));
+	}
+	
+	private void constructForm(JPanel form, FormUtility formUtility) {
+
+	    final JTextField nomCommun 		 = new JTextField();
 	    final JTextField nomScientifique = new JTextField();
-	    formUtility.addLast(nomScientifique, form);
-	    
-	    formUtility.addLabel("* Image optique : ", form);
-	    final JTextField cheminOptique = new JTextField();
-	    formUtility.addLabel(cheminOptique, form);
-	    
-	    JButton browse1 = new JButton("Parcourir");
-	    Dimension browseSize = browse1.getPreferredSize();
-	    browseSize.width = 60;
-	    browse1.setPreferredSize(browseSize);
-	    formUtility.addLast(browse1, form);
-
-	    formUtility.addLabel("* Image thermique : ", form);
+	    final JTextField cheminOptique 	 = new JTextField();
 	    final JTextField cheminThermique = new JTextField();
-	    formUtility.addLabel(cheminThermique, form);
-	    
-	   
+
+	    JButton browse1 = new JButton("Parcourir");
 	    JButton browse2 = new JButton("Parcourir");
-	    Dimension browse2Size = browse2.getPreferredSize();
-	    browse2Size.width = 60;
-	    browse2.setPreferredSize(browse2Size);
-	    formUtility.addLast(browse2, form);
+        JButton cancel 	= new JButton("Annuler");
+        JButton ok 		= new JButton("Valider");
+        JButton help 	= new JButton("Aide");
 	    
-        JButton cancel = new JButton("Annuler");
-        Dimension cancelSize = cancel.getPreferredSize();
-        cancelSize.width = 100;
-        cancel.setPreferredSize(cancelSize);
-        
-        JButton ok = new JButton("Valider");
-        Dimension okSize = ok.getPreferredSize();
-        okSize.width = 100;
-        ok.setPreferredSize(okSize);
-  
-        JButton help = new JButton("Aide");
-        Dimension helpSize = help.getPreferredSize();
-        helpSize.width = 100;
-        help.setPreferredSize(okSize);
-        
-        formUtility.addButton(cancel, form);
-        formUtility.addButton(ok, form);
-        formUtility.addButton(help, form);
-             
+        addNamesForm(nomCommun, nomScientifique, form, formUtility);
+        addBrowsesForm(cheminOptique, browse1, cheminThermique, browse2, form, formUtility);
+        addButtonsForm(cancel, ok, help, form, formUtility);
+                
         browse1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -101,7 +69,6 @@ public class NewProjectForm {
 				cheminOptiqueValue = cheminOptique.getText();
 				if (!cheminOptiqueValue.equals(""))
 					cheminOptique.setBackground(Color.WHITE);
-				
 			}
 		});
         
@@ -113,34 +80,32 @@ public class NewProjectForm {
 				cheminThermiqueValue = cheminThermique.getText();
 				if (!cheminThermiqueValue.equals(""))
 					cheminThermique.setBackground(Color.WHITE);
-				
 			}
-		});
-
+		});        
 	 	ok.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// r�cup�ration des 4 donn�es si obligatoires remplies
-				// insistance sur les obligatoires sinon
 				
-				if (!nomCommun.getText().equals("") && !cheminOptique.getText().equals("") && !cheminThermique.getText().equals("") ) {
-					System.out.println("ok tout rempli");
-					
+				if (!nomCommun.getText().equals("") && !cheminOptique.getText().equals("") && !cheminThermique.getText().equals("") ) {				
 					Main.loadsFromBDD = Main.connecteurBDD.chargementNewProject(nomCommun.getText(),nomScientifique.getText(), cheminOptique.getText(), cheminThermique.getText());
 					Main.workspace = new ConnectInterfaceWorkspace(Main.loadsFromBDD);		
 					frame.dispose();
 				}
 				
-				else
+				else {
 					if (nomCommun.getText().equals(""))
 						nomCommun.setBackground(new Color (254, 231, 240));
+					else 
+						nomCommun.setBackground(Color.WHITE);
+					
 					if (cheminOptiqueValue.equals(""))
 						cheminOptique.setBackground(new Color (254, 231, 240));
+					
 					if (cheminThermiqueValue.equals(""))
 						cheminThermique.setBackground(new Color (254, 231, 240));
+				}
 			}
-				
 		});
         
 	 	
@@ -161,6 +126,47 @@ public class NewProjectForm {
 			}
 		});
   
-	    form.setBorder(new EmptyBorder(2, 2, 2, 2));
+	}
+
+	private void addButtonsForm(JButton cancel, JButton ok, JButton help, JPanel form, FormUtility formUtility) {
+		addButtonForm(cancel, form, formUtility);
+        addButtonForm(ok, form, formUtility);
+        addButtonForm(help, form, formUtility);		
+	}
+
+	private void addBrowsesForm(JTextField cheminOptique, JButton browse1, JTextField cheminThermique, JButton browse2,
+			JPanel form, FormUtility formUtility) {
+		addBrowseForm("* Image optique : ", cheminOptique, form, formUtility, browse1);
+        addBrowseForm("* Image thermique : ", cheminThermique, form, formUtility, browse2);		
+	}
+
+	private void addNamesForm(JTextField nomCommun, JTextField nomScientifique, JPanel form, FormUtility formUtility) {
+		addNameForm("* Nom commun :", nomCommun, form, formUtility);
+		addNameForm("  Nom scientifique :", nomScientifique, form, formUtility);		
+	}
+
+	private void addButtonForm(JButton button, JPanel form, FormUtility formUtility) {
+		Dimension buttonSize = button.getPreferredSize();
+		buttonSize.width = 100;
+		button.setPreferredSize(buttonSize);
+		formUtility.addButton(button, form);		
+	}
+
+	private void addBrowseForm(String string, JTextField textField, JPanel form, FormUtility formUtility, JButton button) {
+		formUtility.addLabel(string, form);
+		formUtility.addSimpleComponent(textField, form);
+		Dimension browseSize = button.getPreferredSize();
+		browseSize.width = 60;
+		button.setPreferredSize(browseSize);
+		formUtility.addLast(button, form);		
+	}
+
+	private void addNameForm(String string, JTextField textField, JPanel form, FormUtility formUtility) {
+		formUtility.addLabel(string, form);
+	    formUtility.addLast(textField, form);		
 	}
 }
+
+
+
+

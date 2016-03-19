@@ -33,7 +33,8 @@ Version Alpha 0.0.3
         - Correction de bug : Le chemin vers le dossier "tmp" est désormais correct - OK; 
         - Correction de bug : L'image optique recallée est bien enregistrée au bon endroit - OK;
         - Ajout de l'interface principale - OK;
-        - Ajout de l'interface de chargement d'un nouveau projet - En cours;
+        - Ajout de l'interface de chargement d'un nouveau projet - OK;
         - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
-        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK;
+        - Ajout du calibrage automatique après chargement et possibilité de recalibrer si le calibrage est mauvais - En Cours 
+        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - A Faire;
        
