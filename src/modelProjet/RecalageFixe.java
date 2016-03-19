@@ -16,7 +16,7 @@ public class RecalageFixe {
 	public Mat sourceOptique 	; 
 	public Mat sourceThermique 	; 
 	public Mat resizeOptique	;
-	public Mat recaleeOptique 	;
+	public static Mat recaleeOptique 	;
 
 	public RecalageFixe(String cheminOptique, String cheminThermique) {
 		sourceOptique 	= Highgui.imread(cheminOptique) ;

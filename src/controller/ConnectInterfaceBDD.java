@@ -41,4 +41,9 @@ public class ConnectInterfaceBDD {
 	public static void enregistrerMasque(String masque, String typeMasque){
 		DATABASE.saveMasque(datephoto, masque, typeMasque);
 	}
+	
+	public static void enregistrerRecallage(String oprecal, String threcal){
+		DATABASE.saveOpticRecal(datephoto, oprecal);
+		DATABASE.saveThermiRecal(datephoto, threcal);
+	}
 }

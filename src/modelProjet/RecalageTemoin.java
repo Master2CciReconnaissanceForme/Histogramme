@@ -17,7 +17,7 @@ public class RecalageTemoin {
 	public Mat sourceOptique 	; 
 	public Mat sourceThermique 	; 
 	public Mat resizeOptique	;
-	public Mat recaleeOptique 	;
+	public static Mat recaleeOptique 	;
 
 	public RecalageTemoin(String cheminOptique, String cheminThermique) {
 		sourceOptique 	= Highgui.imread(cheminOptique) ;

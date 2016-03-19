@@ -39,17 +39,6 @@ public class Main {
             }
         });
 
-
-		/********************************************************************************************************/
-		/* Simulation de l'affichage des images chargées précédemment et de leurs histogrammes associés*/
-		/*workspace.afficherImage(workspace.sourceOpt);
-		workspace.afficherImage(workspace.sourceTh);
-		
-		workspace.afficherImage(workspace.creerHistogramme(workspace.sourceOptGray, 0, 255));
-		workspace.afficherImage(workspace.creerHistogramme(workspace.sourceThGray, 0, 255));*/
-
-		/********************************************************************************************************/
-
 		/* Simulation de création de masque à partir de l'image thermique et sauvegarde dans la base de données de ces masques*/
 		/*workspace.creerMask(workspace.sourceTh, 254, 255, 2);
 		workspace.afficherImage(workspace.masque);
@@ -58,14 +47,5 @@ public class Main {
 		/* simulation de la superposition du masque sur l'image thermique et affichage + Réaffichage de l'image thermique normale*/
 		/*workspace.afficherImage(workspace.superposerMask(workspace.sourceTh, workspace.masque, true));
 		workspace.afficherImage(workspace.sourceTh);*/
-
-		/********************************************************************************************************/
-		/* simulation de recalibrage par l'utilisateur*/
-		
-		//	ConnectInterfaceCalibrage.calibrageManuel(workspace.photos.optOrigine, workspace.photos.thOrigine);
-		
-		/* Simulation de recalibrage automatique */
-		//ConnectInterfaceCalibrage.calibrageAuto(workspace.photos.optOrigine, workspace.photos.thOrigine);
-		
 	}
 }

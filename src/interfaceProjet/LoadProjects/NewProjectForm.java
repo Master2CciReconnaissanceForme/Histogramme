@@ -89,7 +89,12 @@ public class NewProjectForm {
 				
 				if (!nomCommun.getText().equals("") && !cheminOptique.getText().equals("") && !cheminThermique.getText().equals("") ) {				
 					Main.loadsFromBDD = Main.connecteurBDD.chargementNewProject(nomCommun.getText(),nomScientifique.getText(), cheminOptique.getText(), cheminThermique.getText());
-					Main.workspace = new ConnectInterfaceWorkspace(Main.loadsFromBDD);		
+					Main.workspace = new ConnectInterfaceWorkspace(Main.loadsFromBDD, Main.DATABASE.dernierIdPlante());
+						
+					Main.workspace.creerMask(Main.workspace.sourceTh, 254, 255, 2);
+					Main.workspace.afficherImage(Main.workspace.masque);
+					Main.connecteurBDD.enregistrerMasque("Carnaval", "global");
+					
 					frame.dispose();
 				}
 				

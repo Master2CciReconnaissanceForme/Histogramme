@@ -36,5 +36,6 @@ Version Alpha 0.0.3
         - Ajout de l'interface de chargement d'un nouveau projet - OK;
         - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
         - Ajout du calibrage automatique après chargement et possibilité de recalibrer si le calibrage est mauvais - En Cours 
-        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - A Faire;
+        - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK + A modifier;
+            Pour le moment, les nom des images sont écris en dur dans le code il faudra les charger via le nom stocké dans BDD
        

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import main.Main;
 import modelProjet.Photos;
 
 import org.opencv.core.Core;
@@ -27,6 +29,8 @@ import org.opencv.imgproc.Imgproc;
 
 public class ConnectInterfaceWorkspace {
 
+	public static int ID_REP;
+	public static File OUTPUDIR;
 	public Photos photos;
 	public Mat sourceOpt;
 	public Mat sourceTh;
@@ -34,15 +38,25 @@ public class ConnectInterfaceWorkspace {
 	public Mat sourceOptGray;
 	public Mat sourceThGray;
 	
+	public static Mat optRecal;
 	public static Mat masque = null;
 	
-	public ConnectInterfaceWorkspace(Vector<Photos> workspace) {
+	public ConnectInterfaceWorkspace(Vector<Photos> workspace, int ID_REP) {
+		this.ID_REP = ID_REP;
+		OUTPUDIR = new File(Main.PATHYGGDRASIL+"/"+ID_REP);
+		OUTPUDIR.mkdirs();
+		
 		photos = workspace.get(0);
+		
 		sourceOpt = Highgui.imread(photos.optOrigine);
 		sourceTh = Highgui.imread(photos.thOrigine);
+		Highgui.imwrite(OUTPUDIR+"/optique.jpg", sourceOpt);
+		Highgui.imwrite(OUTPUDIR+"/thermique.jpg", sourceOpt);
 		
 		sourceOptGray = Highgui.imread(photos.optOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 		sourceThGray = Highgui.imread(photos.thOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+		
+		attribuerRecallageAutomatique(photos);
 	}
 
 	public static void creerMask(Mat image, int seuilMini, int seuilMaxi, int canalCouleur){
@@ -99,7 +113,7 @@ public class ConnectInterfaceWorkspace {
 	public static void afficherImage(Mat image) {
 		
 		MatOfByte matOfByte = new MatOfByte();
-		Highgui.imencode(".png", image, matOfByte);
+		Highgui.imencode(".jpg", image, matOfByte);
 		byte[] byteArray = matOfByte.toArray();
 		BufferedImage bufImage = null;
 
@@ -113,5 +127,13 @@ public class ConnectInterfaceWorkspace {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void attribuerRecallageAutomatique(Photos photos){
+		optRecal = ConnectInterfaceCalibrage.calibrageAuto(photos.optOrigine, photos.thOrigine);
+	}
+	
+	public static void attribuerRecallageMauel(Photos photos){
+		optRecal = ConnectInterfaceCalibrage.calibrageManuel(photos.optOrigine, photos.thOrigine);
 	}
 }
