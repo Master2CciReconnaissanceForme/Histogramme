@@ -1,4 +1,4 @@
-# Main-Project - ALPHA 0.0.5
+# Main-Project - ALPHA 0.0.7
 Projet en cours de développement 
 Version Alpha 0.0.1 
     Ajout des éléments principaux du modèle et de la base de donnée. 
