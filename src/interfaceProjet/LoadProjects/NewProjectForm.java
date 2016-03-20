@@ -1,7 +1,7 @@
 package interfaceProjet.LoadProjects;
 
+import interfaceProjet.Messages.HelpJDialog;
 import interfaceProjet.Utils.UtilFiles;
-import interfaceProjet.helpMessages.HelpJDialog;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -88,8 +88,8 @@ public class NewProjectForm {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (!nomCommun.getText().equals("") && !cheminOptique.getText().equals("") && !cheminThermique.getText().equals("") ) {				
-					Main.loadsFromBDD = Main.connecteurBDD.chargementNewProject(nomCommun.getText(),nomScientifique.getText(), cheminOptique.getText(), cheminThermique.getText());
-					Main.workspace = new ConnectInterfaceWorkspace(Main.loadsFromBDD, Main.DATABASE.dernierIdPlante());
+					Main.workspace = new ConnectInterfaceWorkspace(nomCommun.getText(), nomScientifique.getText(),
+							cheminOptique.getText(), cheminThermique.getText(), Main.DATABASE.dernierIdPlante()+1);
 						
 					frame.dispose();
 				}

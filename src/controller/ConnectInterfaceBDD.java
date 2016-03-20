@@ -32,10 +32,15 @@ public class ConnectInterfaceBDD {
 		
 		if(Requetes.nouvellePlante(nomScientifique, nomCommun))
 			System.out.println("Nouvelle Plante enregistrée");
-
-		DATABASE.savePhotoOrigine(DATABASE.dernierIdPlante(), cheminOpt, cheminTh, datephoto);
 		
+		DATABASE.savePhotoOrigine(DATABASE.dernierIdPlante(), cheminOpt, cheminTh, datephoto);
+
 		return DATABASE.listePhotos(DATABASE.dernierIdPlante());
+	}
+	
+	public static void sauvegardeNewProject(){
+		String cheminOpt = Main.PATHYGGDRASIL +"/"+DATABASE.dernierIdPlante()+"/optique.jpg";
+		String cheminTh = Main.PATHYGGDRASIL +"/"+DATABASE.dernierIdPlante()+"/thermique.jpg";
 	}
 	
 	public static void enregistrerMasque(String masque, String typeMasque){

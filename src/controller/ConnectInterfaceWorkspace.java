@@ -41,21 +41,22 @@ public class ConnectInterfaceWorkspace {
 	public static Mat optRecal;
 	public static Mat masque = null;
 	
-	public ConnectInterfaceWorkspace(Vector<Photos> workspace, int ID_REP) {
+	public ConnectInterfaceWorkspace(String nomCommun, String nomScientifique, String cheminOpt, String cheminTh, int ID_REP) {
 		this.ID_REP = ID_REP;
 		OUTPUDIR = new File(Main.PATHYGGDRASIL+"/"+ID_REP);
 		OUTPUDIR.mkdirs();
 		
-		photos = workspace.get(0);
-		
-		sourceOpt = Highgui.imread(photos.optOrigine);
-		sourceTh = Highgui.imread(photos.thOrigine);
+		sourceOpt = Highgui.imread(cheminOpt);
+		sourceTh = Highgui.imread(cheminTh);
 		Highgui.imwrite(OUTPUDIR+"/optique.jpg", sourceOpt);
-		Highgui.imwrite(OUTPUDIR+"/thermique.jpg", sourceOpt);
+		Highgui.imwrite(OUTPUDIR+"/thermique.jpg", sourceTh);
+
+		Main.loadsFromBDD = Main.connecteurBDD.chargementNewProject(nomCommun, nomScientifique, OUTPUDIR+"/optique.jpg", OUTPUDIR+"/thermique.jpg");
+
+		sourceOptGray = Highgui.imread(cheminOpt, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+		sourceThGray = Highgui.imread(cheminTh, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 		
-		sourceOptGray = Highgui.imread(photos.optOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
-		sourceThGray = Highgui.imread(photos.thOrigine, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
-		
+		photos = Main.loadsFromBDD.get(0);
 		attribuerRecallageAutomatique(photos);
 	}
 

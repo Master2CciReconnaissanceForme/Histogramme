@@ -46,18 +46,6 @@ public class InterfacePrincipale extends JFrame {
         JMenu but2Menu = new JMenu("Touch2");
         JMenu but3Menu = new JMenu("Touch3");
 
-
-
-        JMenu impMenu = new JMenu("Import");
-
-        JMenuItem newsfMi = new JMenuItem("Import newsfeed list...");
-        JMenuItem bookmMi = new JMenuItem("Import bookmarks...");
-        JMenuItem mailMi = new JMenuItem("Import mail...");
-
-        impMenu.add(newsfMi);
-        impMenu.add(bookmMi);
-        impMenu.add(mailMi);
-
         JMenuItem newMi = new JMenuItem("New");
         newMi.addActionListener(new ActionListener() {
             @Override
@@ -69,9 +57,6 @@ public class InterfacePrincipale extends JFrame {
         		NewProjectForm newProjectForm = new NewProjectForm(frame);;
             }
         });
-        JMenuItem openMi = new JMenuItem("Open");
-        
-        JMenuItem saveMi = new JMenuItem("Save");
 
         JMenuItem exitMi = new JMenuItem("Exit");
         exitMi.setToolTipText("Exit application");
@@ -90,10 +75,6 @@ public class InterfacePrincipale extends JFrame {
 
         //file menu
         fileMenu.add(newMi);
-        fileMenu.add(openMi);
-        fileMenu.add(saveMi);
-        fileMenu.addSeparator();
-        fileMenu.add(impMenu);
         fileMenu.addSeparator();
         fileMenu.add(exitMi);
 
@@ -102,11 +83,7 @@ public class InterfacePrincipale extends JFrame {
         menubar.add(but1Menu);
         menubar.add(but2Menu);
         menubar.add(but3Menu);
-        
-        //Check Button
-        fileMenu.add(checkAction);
-        but2Menu.add(radioAction1);
-        but2Menu.add(radioAction2);
+
 
 
         setJMenuBar(menubar);        

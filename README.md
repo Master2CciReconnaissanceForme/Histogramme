@@ -32,12 +32,33 @@ Version Alpha 0.0.3
         - Ajout de l'interface principale - OK;
         - Ajout de l'interface de chargement d'un nouveau projet - OK;
         - Creation du dossier "Yggdrasil" : Arborescence vers toutes les sauvegardes - OK;
+
+Version Alpha 0.0.4
         - Ajout du calibrage automatique après chargement et possibilité de recalibrer si le calibrage est mauvais - OK 
         - Creation des sauvegardes locales correspondantes au chemins indiqués par la BDD - OK;
        
 Version Alpha 0.0.5 
         - Ajout de l'interface de recalibrage - OK;
-        - Ajout de la sauvegarde des images recalibrees sur disque ET sur BDD - En cours;
-        - Ajout de l'interface de sauvegarde ou non des masques - En cours;
-        - Ajout de l'interface de modification d'options pour la création des masques (Seuils Mini et Maxi etc...) - A faire;
-        - Ajout de la validation des masques dans la BDD - A faire;
+        - Ajout de la sauvegarde des images recalibrees sur disque ET sur BDD - OK;
+        - Ajout de l'interface de sauvegarde ou non des masques - OK;
+        - Ajout de l'affichage des masques - OK;
+        
+Version Alpha 0.0.6 
+        - Ajout de l'interface des histogrammes associés aux captures thermiques - OK;
+        - Ajout des messages d'erreur, titres, et aide dans les interfaces - OK;
+        - Modification et factorisation des codes d'interfaces et de l'interface principale - OK;
+        - CORRECTION DE TOUS LES BUGS RELATIFS A L'ENREGISTREMENT - AMEN !;
+
+Verson Alpha 0.0.7 
+        - Ajout de l'affichage d'images spécifiques (selectionnés par l'utilisateur) dans le menu - En cours;
+        - Ajout de l'affichage d'histogrammes spécifiques (IDEM) dans le menu : En cours;
+        
+Version Alpha 0.0.8
+        - Modification de l'enregistrement des masques - En cours;
+        - Modification de l'enregistrement des masques sur la BDD - En Cours;
+        - Interface permettant de selectionner le nom du masque et son type à enregistréer - En cours;
+
+# Version Beta 1
+      - modification et ajout des try/catch dans les requetes base de données.
+      - compilation. 
+      - faire le zulukoptere avec mon penny sur le balcon.

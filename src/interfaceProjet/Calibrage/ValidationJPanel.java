@@ -1,5 +1,7 @@
 package interfaceProjet.Calibrage;
 
+import interfaceProjet.Utils.NextJDialog;
+
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +21,7 @@ import modelProjet.RecalageTemoin;
 import org.opencv.highgui.Highgui;
 
 import controller.ConnectInterfaceCalibrage;
+import controller.ConnectInterfaceWorkspace;
 
 /* Affichage des deux images recalées + superposées
  * "Si vous etes satisfait du calibrage cliquez sur OK sinon, cliquez sur Calibrage manuel"
@@ -28,7 +31,6 @@ import controller.ConnectInterfaceCalibrage;
 
 public class ValidationJPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	
 	RecalageFixe recalageTest ;
 	RecalageTemoin recalageTemoin ;
 
@@ -70,8 +72,13 @@ public class ValidationJPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				// ENREGISTREMENT JOHN
+				Highgui.imwrite(Main.workspace.OUTPUDIR+"/recaleeOptiqueValid.jpg",
+						Highgui.imread(Main.PATHFILE+"/recaleeOptiqueValid.jpg"));
 				
+				Highgui.imwrite(Main.workspace.OUTPUDIR+"/recaleeThermiqueValid.jpg",
+						Highgui.imread(Main.PATHFILE+"/recaleeThermiqueValid.jpg"));
+				
+				new NextJDialog (0);
 				validationJFrame.dispose();
 				
 				/*
