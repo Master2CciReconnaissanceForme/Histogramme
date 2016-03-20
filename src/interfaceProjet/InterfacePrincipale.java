@@ -1,17 +1,17 @@
 package interfaceProjet;
 
+import interfaceProjet.Histogrammes.AffichageHisto;
+import interfaceProjet.Histogrammes.AffichageHistoJFrame;
+import interfaceProjet.Histogrammes.HistoJFrame;
 import interfaceProjet.LoadProjects.NewProjectForm;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JRadioButtonMenuItem;
 
 
 public class InterfacePrincipale extends JFrame {
@@ -39,12 +39,9 @@ public class InterfacePrincipale extends JFrame {
         
         JMenuBar menubar = new JMenuBar();
 
-        JMenu fileMenu = new JMenu("File");
-        JMenu but1Menu = new JMenu("Recent");
-        
-                
-        JMenu but2Menu = new JMenu("Touch2");
-        JMenu but3Menu = new JMenu("Touch3");
+        JMenu fileMenu = new JMenu("Fichier...");
+        JMenu butHist = new JMenu("Histogrammes...");
+        JMenu butPrint = new JMenu("Images...");
 
         JMenuItem newMi = new JMenuItem("New");
         newMi.addActionListener(new ActionListener() {
@@ -68,21 +65,29 @@ public class InterfacePrincipale extends JFrame {
             }
         });
         
-        // ajout des buttons check
-        JCheckBoxMenuItem checkAction = new JCheckBoxMenuItem("Check Action");
-        JRadioButtonMenuItem radioAction1 = new JRadioButtonMenuItem("On/Off Button1");
-        JRadioButtonMenuItem radioAction2 = new JRadioButtonMenuItem("On/Off Button2");
+        JMenuItem Affichage1 = new JMenuItem("Afficher");
+        JMenuItem Affichage2 = new JMenuItem("Afficher");
 
         //file menu
         fileMenu.add(newMi);
         fileMenu.addSeparator();
         fileMenu.add(exitMi);
 
-        //menu bar
+        butHist.add(Affichage1);
+        Affichage1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+            	AffichageHistoJFrame frame = new AffichageHistoJFrame();
+        	    frame.setSize(800, 1000);
+        	    frame.setVisible(true);
+        		AffichageHisto affichageHisto = new AffichageHisto(frame);;
+            }
+        });
+        butPrint.add(Affichage2);
+     
         menubar.add(fileMenu);
-        menubar.add(but1Menu);
-        menubar.add(but2Menu);
-        menubar.add(but3Menu);
+        menubar.add(butHist);
+        menubar.add(butPrint);
 
 
 

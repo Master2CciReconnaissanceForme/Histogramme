@@ -25,6 +25,7 @@ public class Requetes extends Connect {
 	}
 
 	public static boolean nouvellePlante(String nomsci, String nomcom) {
+		boolean res=false;
 		try {
 			requete = "INSERT INTO plantes (nomsci,nomcom) VALUES (?,?);";
 			prstate = conn.prepareStatement(requete);
@@ -32,17 +33,24 @@ public class Requetes extends Connect {
 			prstate.setString(1, nomsci);
 			prstate.setString(2, nomcom);
 			
-			System.out.println(prstate.toString());
+			//System.out.println(prstate.toString());
 			
 			prstate.executeUpdate();
-			prstate.close();
 			
-			return true;
+			res=true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		}
+			res=false;
+		} finally {
+				try{
+         			if(prstate!=null)
+            		prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+   		}	
+		return res;//Le cas d'erreur est le boolean
 	}
 	
 	public static int dernierIdPlante(){
@@ -55,18 +63,28 @@ public class Requetes extends Connect {
 			
 			result.next();
 			res = result.getInt(1);
-			
-			result.close();
-			state.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
-		return res;
+		} finally {
+				try{
+         			if(result!=null)
+            		result.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+				try{
+         			if(state!=null)
+            		state.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+   		}		
+		return res; //le cas d'erreur est le 0
 	}
 	
 	public static boolean savePhotoOrigine(int idplante, String opOri, String thOri, Date datephoto){
-		
+		boolean res=false;
 		try {
 			requete = "INSERT INTO photos (idplante,datephoto,optiqueorigine,thermiqueorigine) VALUES (?,?,?,?);";
 			prstate = conn.prepareStatement(requete);
@@ -76,20 +94,28 @@ public class Requetes extends Connect {
 			prstate.setString(3, opOri);
 			prstate.setString(4, thOri);
 	
-			System.out.println(prstate.toString());
+			//System.out.println(prstate.toString());
 			
 			prstate.executeUpdate();
-			prstate.close();
-			return true;
+
+			res = true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();	
-			return false;
-		}	
+			res = false;
+		}finally {
+				try{
+         			if(prstate!=null)
+            		prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+   		}
+   		return res;	//le boolean est le cas d'erreur
 	}
 	
 	public static boolean saveOpticRecal(Date datephoto, String oprecal){
-		
+		boolean res=false;
 		try {
 			requete = "	UPDATE photos SET optiquerecale= ? WHERE datephoto= ?;";
 			prstate = conn.prepareStatement(requete);
@@ -97,20 +123,28 @@ public class Requetes extends Connect {
 			prstate.setString(1, oprecal);
 			prstate.setObject(2, datephoto);
 	
-			System.out.println(prstate.toString());
+			//System.out.println(prstate.toString());
 			
 			prstate.executeUpdate();
-			prstate.close();
-			return true;
+
+			res=true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();	
-			return false;
-		}	
+			res=false;
+		}finally {
+				try{
+         			if(prstate!=null)
+            		prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+      	return res;//le boolean est le cas d'erreur	
 	}
 
 	public static boolean saveThermiRecal(Date datephoto, String threcal){
-		
+		boolean res=false;
 		try {
 			requete = "	UPDATE photos SET thermiquerecale= ? WHERE datephoto= ?;";
 			prstate = conn.prepareStatement(requete);
@@ -120,12 +154,20 @@ public class Requetes extends Connect {
 	
 			prstate.executeUpdate();
 			prstate.close();
-			return true;
+			res = true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();	
-			return false;
-		}	
+			res = false;
+		}finally {
+				try{
+         			if(prstate!=null)
+            		prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+		return res;//le boolean est le cas d'erreur	
 	}
 
 	public static Vector<Photos> listePhotos(int idPlante){
@@ -138,23 +180,38 @@ public class Requetes extends Connect {
 			prstate.setObject(1, idPlante);
 					
 			result = prstate.executeQuery();			
-			while(result.next()){
-				 photo.addElement(new Photos(result.getInt(1),
-											 result.getInt(2),
-											 result.getDate(3),
-											 result.getString(4),
-											 result.getString(5),
-											 result.getString(6),
-											 result.getString(7),
-											 result.getFloat(8),
-											 result.getFloat(9)));
-			}
-			result.close();
-			prstate.close();
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return photo;
+		} finally {
+				try{
+         			if(result!=null){
+         				while(result.next()){
+				 			photo.addElement(new Photos(result.getInt(1),
+														 result.getInt(2),
+														 result.getDate(3),
+														 result.getString(4),
+														 result.getString(5),
+														 result.getString(6),
+														 result.getString(7),
+														 result.getFloat(8),
+														 result.getFloat(9)));
+						}
+         				result.close();
+         			}
+      			} catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      			
+				try{
+         			if(prstate!=null)
+            		prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+		return photo;//le vide est le cas d'erreur
 	}
 	
 	public static int idPhoto(Date datephoto){
@@ -167,22 +224,34 @@ public class Requetes extends Connect {
 			prstate.setObject(1, dateFormatee);
 			
 			result = prstate.executeQuery();
-			System.out.println(prstate);
+			//System.out.println(prstate);
 			result.next();
 			res = result.getInt(1);
-			
-			result.close();
-			prstate.close();
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
-		return res;
+		}finally {
+				try{
+         			if(result!=null)
+            			result.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+				try{
+         			if(prstate!=null)
+            			prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+   		}			
+		return res;//le 0 est le cas d'erreur
 	}
 	
 	public static boolean saveMasque(Date datephoto, String masque, String typeMasque){
 		int idphoto = idPhoto(datephoto);
-		System.out.println(datephoto);
+		boolean res;
+		//System.out.println(datephoto);
 		try {
 			requete = "insert into masques(idphoto,masque,typemasque,valide)values(?,?,?,false);";
 			prstate = conn.prepareStatement(requete);
@@ -190,17 +259,23 @@ public class Requetes extends Connect {
 			prstate.setString(2, masque);
 			prstate.setString(3, typeMasque);
 			
-			System.out.println(prstate);
+			//System.out.println(prstate);
 			prstate.executeUpdate();
 			
-			prstate.close();
-			
-			return true;
+			res = true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		}
+			res = false;
+		}finally {
+				try{
+         			if(prstate!=null)
+            			prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+      	return res;//Le boolean est le cas d'erreur
 	}
 	
 	public static Vector<Masques> masqueNomcom(String nomcom){
@@ -214,21 +289,32 @@ public class Requetes extends Connect {
 			
 			result = prstate.executeQuery();
 			
-			while(result.next()){
-				 masques.addElement(new Masques(result.getInt(1),
-											 result.getInt(2),
-											 result.getString(3),
-											 result.getString(4),
-											 result.getBoolean(5)));
-			}
-			
-			result.close();
-			prstate.close();
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return masques;
+		}finally {
+				try{
+         			if(result!=null){
+         				while(result.next()){
+				 			masques.addElement(new Masques(result.getInt(1),
+															 result.getInt(2),
+															 result.getString(3),
+															 result.getString(4),
+															 result.getBoolean(5)));
+						}	
+            			result.close();
+            		}
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}try{
+         			if(prstate!=null)
+            			prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+		return masques;// Le null est le cas d'errreur
 	}
 	
 	public static ResultSet masqueNomsci(String nomsci){
@@ -241,26 +327,36 @@ public class Requetes extends Connect {
 			prstate.setString(1, nomsci);
 			
 			result = prstate.executeQuery();
-			
-			while(result.next()){
-				 masques.addElement(new Masques(result.getInt(1),
-											 result.getInt(2),
-											 result.getString(3),
-											 result.getString(4),
-											 result.getBoolean(5)));
-			}
-			
-			result.close();
-			prstate.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return result;
+		}finally {
+				try{
+         			if(result!=null){
+         				while(result.next()){
+				 			masques.addElement(new Masques(result.getInt(1),
+															 result.getInt(2),
+															 result.getString(3),
+															 result.getString(4),
+															 result.getBoolean(5)));
+						}	
+            			result.close();
+            		}
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}try{
+         			if(prstate!=null)
+            			prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+		return result;// Le null est le cas d'errreur
 	}
 	
 	public static boolean updateMasque(Date datephoto, String masque, String typeMasque, boolean statut){
 		int idphoto = idPhoto(datephoto);
+		boolean res=false;
 		try {
 			requete = "update masque valide = ? where idphoto = ? and masque= ? And typemasque= ?;";
 			prstate = conn.prepareStatement(requete);
@@ -271,13 +367,24 @@ public class Requetes extends Connect {
 			
 			result = state.executeQuery(requete);
 			
-			result.close();
-			state.close();
-			return true;
+			res = true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		}
+			res = false;
+		}finally {
+				try{
+         			if(result!=null)
+  						result.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}try{
+         			if(prstate!=null)
+            			prstate.close();
+      			}catch(SQLException se){
+       				se.printStackTrace();
+      			}
+      	}
+      	return res;//le boolean est le cas d'erreur
 	}
 }
