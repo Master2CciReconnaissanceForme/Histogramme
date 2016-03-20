@@ -40,27 +40,15 @@ public class HistoJPanel extends JPanel {
 		histogrammeGlobal = Toolkit.getDefaultToolkit().createImage(Main.PATHFILE+"/histogrammeTGlobal.jpg");
 		
 		add(new JLabel (TitleMessages.ENDHISTOGRAMME));
-		JButton save 	= new JButton("Sauvegarder");
-		JButton cancel 	= new JButton("Annuler");
-		add(save) ;
-		add(cancel);
+		
+		JButton end = new JButton("Terminer");
+		add(end);
 	
-		save.addActionListener(new ActionListener() {
+		end.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				// ENREGISTREMENT JOHN
-				
 				histoJFrame.dispose();		 
-			}
-		});
-		
-		cancel.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				histoJFrame.dispose();
 			}
 		});
 	}

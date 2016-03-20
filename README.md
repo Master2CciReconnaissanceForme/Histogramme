@@ -53,9 +53,9 @@ Verson Alpha 0.0.7
         - Ajout de l'affichage d'images spécifiques dans le menu - OK;
         
 Version Alpha 0.0.8
-        - Modification de l'enregistrement des masques - En Cours ;
-        - Modification de l'enregistrement des masques sur la BDD - En Cours;
-        - Interface permettant de selectionner le nom du masque et son type à enregistréer - En cours;
+        - Modification de l'enregistrement des masques - OK ;
+        - Modification de l'enregistrement des masques sur la BDD - OK;
+        - Interface permettant de selectionner le nom du masque et son type à enregistréer - OK;
 
 # Version Beta 1
    -modification et ajout des try/catch dans les requetes base de données.
