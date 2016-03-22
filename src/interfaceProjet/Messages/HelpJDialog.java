@@ -12,7 +12,7 @@ public class HelpJDialog extends JDialog {
 	public HelpJDialog(JFrame jFrame, String title, boolean modal) {
 		
 		super(jFrame, title, modal);
-		setSize(500, 150);
+		setSize(500, 250);
 		
 		JPanel help = new JPanel() ;
 		add(help);

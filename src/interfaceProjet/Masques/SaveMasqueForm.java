@@ -75,8 +75,8 @@ public class SaveMasqueForm {
 				
 				if (!nomMasque.getText().equals("") && !categorie.getSelectedItem().equals(""))  {				
 					
-					Highgui.imwrite(Main.workspace.OUTPUDIR+"/masqueGlobal.jpg", Main.workspace.masque);
-					Main.connecteurBDD.enregistrerMasque(Main.workspace.OUTPUDIR+"nomMasque.getText()", categorie.getSelectedItem().toString());
+					Highgui.imwrite(Main.workspace.OUTPUDIR+"/"+nomMasque.getText()+".jpg", Main.workspace.masque);
+					Main.connecteurBDD.enregistrerMasque(Main.workspace.OUTPUDIR+"/"+nomMasque.getText()+".jpg", categorie.getSelectedItem().toString());
 					
 					frame.dispose() ;
 					masqueJFrame.dispose() ;

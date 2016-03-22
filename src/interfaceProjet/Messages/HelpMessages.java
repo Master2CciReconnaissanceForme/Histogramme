@@ -5,7 +5,7 @@ public abstract class HelpMessages {
 	protected final static String NEWPROJECT = "<html>"
 			+ "<br>"
 			+ "<br>Vous devez donner un nom à votre projet et télécharger"
-			+ "<br>le couple d'images optique et thermique à traiter."
+			+ "<br>le couple d'images optique et thermique à traiter (au format .jpg)."
 			+ "<br>"
 			+ "<br>Les images seront recalées et vous aurez la possibilité"
 			+ "<br>de les sauver pour poursuivre le traitement pour créer le"

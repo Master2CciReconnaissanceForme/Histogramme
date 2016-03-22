@@ -48,8 +48,7 @@ public class InterfacePrincipale extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
             	JFrame frame = new JFrame ("Nouveau projet");
-        	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	    frame.setSize(400, 400);
+        	    frame.setSize(360, 200);
         	    frame.setVisible(true);
         		NewProjectForm newProjectForm = new NewProjectForm(frame);;
             }

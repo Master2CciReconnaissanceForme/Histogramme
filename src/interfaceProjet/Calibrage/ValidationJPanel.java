@@ -80,15 +80,6 @@ public class ValidationJPanel extends JPanel {
 				
 				new NextJDialog (0);
 				validationJFrame.dispose();
-				
-				/*
-				 Pour demande masque
-				 
-				 Même délire : ouverture d'une JFrame avec les résultat et les boutons valider ou non
-				 Si valider on peut encore faire pareil pour choper l'histo de température : une demande si oui ou non on souhaite poursuivre et si oui blablabla
-				 Sinon, retour à la page d'accueil
-				 
-				 */
 			}
 		});
 		
@@ -97,7 +88,7 @@ public class ValidationJPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				validationJFrame.dispose();
-				Main.workspace.attribuerRecallageMauel(Main.workspace.photos);
+				Main.workspace.attribuerRecalageMaunel(Main.workspace.photos);
 			}
 		});
 	}

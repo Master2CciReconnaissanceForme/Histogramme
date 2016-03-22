@@ -57,7 +57,7 @@ public class ConnectInterfaceWorkspace {
 		sourceThGray = Highgui.imread(cheminTh, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 		
 		photos = Main.loadsFromBDD.get(0);
-		attribuerRecallageAutomatique(photos);
+		attribuerRecalageAutomatique(photos);
 	}
 
 	public static void creerMask(Mat image, int seuilMini, int seuilMaxi, int canalCouleur){
@@ -130,11 +130,11 @@ public class ConnectInterfaceWorkspace {
 		}
 	}
 	
-	public static void attribuerRecallageAutomatique(Photos photos){
+	public static void attribuerRecalageAutomatique(Photos photos){
 		optRecal = ConnectInterfaceCalibrage.calibrageAuto(photos.optOrigine, photos.thOrigine);
 	}
 	
-	public static void attribuerRecallageMauel(Photos photos){
+	public static void attribuerRecalageMaunel(Photos photos){
 		optRecal = ConnectInterfaceCalibrage.calibrageManuel(photos.optOrigine, photos.thOrigine);
 	}
 }

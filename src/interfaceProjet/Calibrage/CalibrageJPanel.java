@@ -25,6 +25,8 @@ import org.opencv.core.Size;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
+import controller.ConnectInterfaceCalibrage;
+
 public class CalibrageJPanel extends JPanel{
 
 	/**
@@ -155,7 +157,7 @@ public class CalibrageJPanel extends JPanel{
 		 
 		 
 		 
-		 JButton end = new JButton("Termin�");
+		 JButton end = new JButton("Terminer");
 		 end.addActionListener(new ActionListener() {
 
 			 @Override
@@ -169,7 +171,9 @@ public class CalibrageJPanel extends JPanel{
 				 } catch (IOException e) {
 					 e.printStackTrace();
 				 }
-				 	imJFrame.recalageTemoin.recalageFinalOptique(facteur, iOptique*3,jOptique*3); 
+				 	imJFrame.dispose();
+//				 	imJFrame.recalageTemoin.recalageFinalOptique(facteur, iOptique*3,jOptique*3); 
+				 	ConnectInterfaceCalibrage.calibrageAuto(Main.workspace.photos.optOrigine, Main.workspace.photos.thOrigine);
 				 }
 			 });
 		 
